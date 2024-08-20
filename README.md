@@ -1,9 +1,6 @@
 - 👋 Hi, I’m @Bucky007-bit
 - 👀 I’m interested in electronics and computer
 - 🌱 I’m currently learning programming
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-- 😄 Pronouns: ...
 - ⚡ Fun fact: i know you??
 
 <!---
