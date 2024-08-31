@@ -1,7 +1,7 @@
-#define BLYNK_TEMPLATE_ID "TMPL3XPBzl0uH"
-#define BLYNK_TEMPLATE_NAME "ESP32"
+#define BLYNK_TEMPLATE_ID "your template id"
+#define BLYNK_TEMPLATE_NAME "your template name"
 
-#define BLYNK_AUTH_TOKEN "czmoP4vsx8BTtIOE2EVyu0dZLRtPmpzw"
+#define BLYNK_AUTH_TOKEN "your auth token"
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp32.h>
@@ -9,8 +9,8 @@
 #include <Wire.h>
 
 
-char ssid[] = "qwerty";
-char pass[] = "12345678";
+char ssid[] = "yor ssid";
+char pass[] = "password";
 
 
 #define DHTPIN 15   
