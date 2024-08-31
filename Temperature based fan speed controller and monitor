@@ -1,0 +1,87 @@
+#define BLYNK_TEMPLATE_ID "TMPL3XPBzl0uH"
+#define BLYNK_TEMPLATE_NAME "ESP32"
+
+#define BLYNK_AUTH_TOKEN "czmoP4vsx8BTtIOE2EVyu0dZLRtPmpzw"
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <BlynkSimpleEsp32.h>
+#include <DHT.h>
+#include <Wire.h>
+
+
+char ssid[] = "qwerty";
+char pass[] = "12345678";
+
+
+#define DHTPIN 15   
+#define DHTTYPE DHT11   
+DHT dht(DHTPIN, DHTTYPE);
+
+
+
+
+#define FAN_PIN 5      
+
+float temperature;
+int fanSpeed;
+
+
+
+#define VPIN_TEMPERATURE V1
+#define VPIN_FANSPEED V2
+
+void setup()
+{
+  
+  Serial.begin(115200);
+  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+  dht.begin();
+ 
+  pinMode(FAN_PIN, OUTPUT);
+  ledcAttach(FAN_PIN,50,10);      
+ 
+}
+
+void loop()
+{
+  
+  Blynk.run();
+  temperature = dht.readTemperature();
+  if (isnan(temperature)) {
+    Serial.println(F("Failed to read from DHT sensor!"));
+     delay(2000);
+    return;
+  }
+  
+  if (temperature < 25) {
+    fanSpeed = 200;  
+  } else if (temperature>= 25 && temperature < 40) {
+    fanSpeed = map(temperature,25, 40, 200,1023 ); 
+  } else {
+    fanSpeed = 1023; 
+  }
+
+  ledcWrite(5, fanSpeed);
+
+
+  
+
+  
+  Serial.print("Temperature:");
+  Serial.print(temperature);
+  Serial.print("C");
+  
+  Serial.print("Fan speed:");
+  Serial.print(map(fanSpeed, 200,1023, 0, 100));
+    Serial.print("%");
+  
+  Blynk.virtualWrite(VPIN_TEMPERATURE, temperature);
+  Blynk.virtualWrite(VPIN_FANSPEED, map(fanSpeed, 200, 1023, 0, 100));
+
+  /*if(Switch==1){
+    digitalWrite(fanSpeed,HIGH);
+  } if else{
+     digitalWrite(fanSpeed,LOW);
+  }// Add a delay to avoid flooding the Blynk server
+  delay(2000);*/
+}
