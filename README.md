@@ -1,7 +1,4 @@
-- 👋 Hi, I’m @Bucky007-bit
-- 👀 I’m interested in electronics and computer
-- 🌱 I’m currently learning programming
-- ⚡ Fun fact: i know you??
+
 
 <!---
 Bucky007-bit/Bucky007-bit is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
